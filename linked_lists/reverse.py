@@ -21,11 +21,18 @@ def reverse(llist):
 
 
 def reverse_rec(cur):
+    # if current node is None -> return None; if cur.next is None: tail node -> set as new head
     if not cur or not cur.next:
         return cur
-
+    # recursive call to next node (exists thanks to last if statement)
     n_head = reverse_rec(cur.next)
-    return
+    # if node returned here, it means we got the tail of the list, so it is the new head
+
+    # Make current node's next node point to current node to reverse list
+    cur.next.next = cur
+    # make current node point to None
+    cur.next = None
+    return n_head
 
 
 if __name__ == "__main__":
